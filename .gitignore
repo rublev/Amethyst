@@ -27,3 +27,4 @@ fastlane/report.xml
 # Homebrew
 Brewfile.lock.json
 
+.claude/settings.local.json
