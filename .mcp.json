@@ -1,0 +1,46 @@
+{
+  "mcpServers": {
+    "serena": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide-assistant",
+        "--project",
+        "."
+      ],
+      "env": {}
+    },
+    "render": {
+      "type": "http",
+      "url": "https://mcp.render.com/mcp",
+      "headers": {
+        "Authorization": "Bearer rnd_SqFFQQP8L8GcKuVsyQq65gt9Hkpd"
+      },
+      "toolConfig": {
+        "defer_loading": true
+      }
+    },
+    "tavily": {
+      "type": "http",
+      "url": "https://mcp.tavily.com/mcp/?tavilyApiKey=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",
+      "toolConfig": {
+        "defer_loading": true
+      }
+    },
+    "AgentMail": {
+      "command": "npx",
+      "args": ["-y", "agentmail-mcp"],
+      "env": {
+        "AGENTMAIL_API_KEY": "am_4ce8e2aa785e9b9e30dd5c779a807f2f41c9a104657c1f9471b2f48eee3d4579"
+      },
+      "toolConfig": {
+        "defer_loading": true
+      }
+    }
+  }
+}
