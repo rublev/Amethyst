@@ -69,6 +69,9 @@ enum ConfigurationKey: String {
     case mod2 = "mod2"
     case mod3 = "mod3"
     case mod4 = "mod4"
+    case mod5 = "mod5"
+    case mod6 = "mod6"
+    case mod7 = "mod7"
     case windowMargins = "window-margins"
     case smartWindowMargins = "smart-window-margins"
     case windowMarginSize = "window-margin-size"
@@ -222,6 +225,9 @@ class UserConfiguration: NSObject {
     var modifier2: AMModifierFlags?
     var modifier3: AMModifierFlags?
     var modifier4: AMModifierFlags?
+    var modifier5: AMModifierFlags?
+    var modifier6: AMModifierFlags?
+    var modifier7: AMModifierFlags?
 
     init(storage: ConfigurationStorage) {
         self.storage = storage
@@ -399,6 +405,9 @@ class UserConfiguration: NSObject {
         let mod2Strings: [String] = configurationValueForKey(.mod2) ?? []
         let mod3Strings: [String]? = configurationValueForKey(.mod3)
         let mod4Strings: [String]? = configurationValueForKey(.mod4)
+        let mod5Strings: [String]? = configurationValueForKey(.mod5)
+        let mod6Strings: [String]? = configurationValueForKey(.mod6)
+        let mod7Strings: [String]? = configurationValueForKey(.mod7)
 
         modifier1 = modifierFlagsForStrings(mod1Strings)
         modifier2 = modifierFlagsForStrings(mod2Strings)
@@ -428,6 +437,18 @@ class UserConfiguration: NSObject {
         if let mod4Strings = mod4Strings {
             modifier4 = modifierFlagsForStrings(mod4Strings)
         }
+
+        if let mod5Strings = mod5Strings {
+            modifier5 = modifierFlagsForStrings(mod5Strings)
+        }
+
+        if let mod6Strings = mod6Strings {
+            modifier6 = modifierFlagsForStrings(mod6Strings)
+        }
+
+        if let mod7Strings = mod7Strings {
+            modifier7 = modifierFlagsForStrings(mod7Strings)
+        }
     }
 
     static func constructLayoutKeyString(_ layoutKey: String) -> String {
@@ -447,7 +468,10 @@ class UserConfiguration: NSObject {
             let mod2: [String]? = configurationValueForKey(.mod2, fallbackToDefault: false)
             let mod3: [String]? = configurationValueForKey(.mod3, fallbackToDefault: false)
             let mod4: [String]? = configurationValueForKey(.mod4, fallbackToDefault: false)
-            if mod1 != nil || mod2 != nil || mod3 != nil || mod4 != nil {
+            let mod5: [String]? = configurationValueForKey(.mod5, fallbackToDefault: false)
+            let mod6: [String]? = configurationValueForKey(.mod6, fallbackToDefault: false)
+            let mod7: [String]? = configurationValueForKey(.mod7, fallbackToDefault: false)
+            if mod1 != nil || mod2 != nil || mod3 != nil || mod4 != nil || mod5 != nil || mod6 != nil || mod7 != nil {
                 override = true
             }
             command = defaultConfiguration?[commandKey].rawValue as? [String: String]
@@ -468,6 +492,12 @@ class UserConfiguration: NSObject {
                 commandFlags = modifier3
             case "mod4":
                 commandFlags = modifier4
+            case "mod5":
+                commandFlags = modifier5
+            case "mod6":
+                commandFlags = modifier6
+            case "mod7":
+                commandFlags = modifier7
             default:
                 log.warning("Unknown modifier string: \(modifierString)")
                 return
@@ -517,6 +547,12 @@ class UserConfiguration: NSObject {
             return modifier3!
         case "mod4":
             return modifier4!
+        case "mod5":
+            return modifier5!
+        case "mod6":
+            return modifier6!
+        case "mod7":
+            return modifier7!
         default:
             log.warning("Unknown modifier string: \(modifierString)")
             return modifier1!
