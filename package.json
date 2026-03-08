@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "scripts": {
+    "serena": "uvx --from git+https://github.com/oraios/serena serena project index"
+  }
+}
